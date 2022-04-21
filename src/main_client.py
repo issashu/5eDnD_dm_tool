@@ -1,17 +1,10 @@
-from gui_base_class import BaseWindow   
+
+from app_settings import AppSettings
+from app_main_window import MainWindow
 
 
-layout = [[sg.Text('My one-shot window.')],      
-                 [sg.InputText()],      
-                 [sg.Submit(), sg.Cancel()]]      
-
-def new_func(layout):
-    window = sg.Window('Window Title', layout)
-    return window
-
-
-event, values = window.read()    
-window.close()
-
-text_input = values[0]    
-sg.popup('You entered', text_input)
+if __name__ == "__main__":
+    app_gui = MainWindow()
+    app_gui.set_layout(layout=app_gui.get_window_layout())
+    app_gui.create_window(title="test", icon=None, window_size=(800, 600))
+    app_gui.read_window(AppSettings.default_read_timeout)
