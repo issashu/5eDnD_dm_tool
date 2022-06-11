@@ -42,6 +42,13 @@ class BaseWindow(object):
         self.__window = simple_gui.Window(title=title, icon=icon, size=window_size, layout=self.__window_layout,
                                           grab_anywhere=True, finalize=True)
 
+    def get_window(self):
+        """
+        Returns the created window.
+
+        Returns: PySimpleGUi.Window
+
+        """
         return self.__window
 
     def read_window(self, timeout=None):
