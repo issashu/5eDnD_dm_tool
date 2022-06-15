@@ -6,21 +6,17 @@ class BaseWindow(object):
     Base window class, containing common window members and methods.
     Inherit this for all other app windows.
     """
-    __instance = None
-    __window_layout = None
-    __window = None
 
-    def __new__(cls):
+    def __init__(self):
         """
         Single style instantiation method. If there is no instance of the class, creates a new one.
         Otherwise, just returns the existing one. Creates a barebone window. Use specific methods to add elements.
         """
-        if cls.__instance is None:
-            cls.__instance = super(BaseWindow, cls).__new__(cls)
-            cls.events = None
-            cls.values = None
-
-        return cls.__instance
+        self.event = None
+        self.values = None
+        self.__window_layout = None
+        self.__window = None
+        self.__is_active = True
 
     def __getattribute__(self, name: str) -> any:
         return super(BaseWindow, self).__getattribute__(name)
@@ -35,12 +31,12 @@ class BaseWindow(object):
         """
         self.__window_layout = layout
 
-    def create_window(self, title, icon, window_size) -> simple_gui.Window:
+    def create_window(self, title, icon, window_size, right_click_menu=simple_gui.MENU_RIGHT_CLICK_EDITME_VER_SETTINGS_EXIT) -> simple_gui.Window:
         """
         Creates a window based on predefined layout, title, icon and size.
         """
         self.__window = simple_gui.Window(title=title, icon=icon, size=window_size, layout=self.__window_layout,
-                                          grab_anywhere=True, finalize=True)
+                                          grab_anywhere=True, finalize=True, right_click_menu=right_click_menu)
 
     def get_window(self):
         """
@@ -51,14 +47,22 @@ class BaseWindow(object):
         """
         return self.__window
 
+    def check_is_active(self):
+        """
+        Returns: True if window is active or False, if it has been closed.
+        """
+        return self.__is_active
+
     def read_window(self, timeout=None):
         """
         Method used to refresh the window and read any values and events of it.
         """
-        self.events, self.values = self.__window.Read(timeout)
+        self.event, self.values = self.__window.Read(timeout)
 
     def close_window(self) -> None:
         """
         Method used to close the app window.
         """
+        self.__is_active = False
         self.__window.close()
+

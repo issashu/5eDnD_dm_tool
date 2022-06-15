@@ -1,10 +1,12 @@
 from BaseWindowClass import BaseWindow
+from WindowManagerClass import WindowManager
 from app_settings import AppSettings
 
 
-class MainWindow(BaseWindow):
+class MainWindow(BaseWindow, WindowManager):
     __main_window_layout = AppSettings.layout
     __map_image = None
+    __version = AppSettings.app_version
 
     def get_window_layout(self) -> list:
         """
@@ -32,3 +34,12 @@ class MainWindow(BaseWindow):
 
         """
         return self.__map_image
+
+    def get_app_version(self):
+        return self.__version
+
+    def main_loop(self):
+        while self.check_is_active():
+            self.read_window(300)
+            print(self.event, self.values, self.check_is_active())
+            self.common_events_loop()

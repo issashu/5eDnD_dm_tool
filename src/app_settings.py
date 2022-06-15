@@ -3,6 +3,7 @@ import PySimpleGUI as Sg
 
 # noinspection PyMissingOrEmptyDocstring
 class AppSettings:
+    app_version = '0.1a'
     settings_file_path = '.'
     settings_file_name = 'SETTINGS.INI'
     settings = Sg.UserSettings(path=settings_file_path, filename=settings_file_name, use_config_file=True)
