@@ -20,7 +20,8 @@ class EventBinder(object):
     def bind_event(self, event, window):
         # type: (list, simple_gui.Window)-> None
         """
-        Binds an event to a window. TGhe event passed must be a list containing the event key name and a return event description
+        Binds an event to a window. The event passed must be a list containing the event key name and a
+        return event description.
         Args:
             event:
             window:

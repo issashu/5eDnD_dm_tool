@@ -31,7 +31,8 @@ class BaseWindow(object):
         """
         self.__window_layout = layout
 
-    def create_window(self, title, icon, window_size, right_click_menu=simple_gui.MENU_RIGHT_CLICK_EDITME_VER_SETTINGS_EXIT) -> simple_gui.Window:
+    def create_window(self, title, icon, window_size,
+                      right_click_menu=simple_gui.MENU_RIGHT_CLICK_EDITME_VER_SETTINGS_EXIT) -> simple_gui.Window:
         """
         Creates a window based on predefined layout, title, icon and size.
         """

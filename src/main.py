@@ -9,7 +9,11 @@ if __name__ == "__main__":
     app_gui.set_layout(layout=app_gui.get_window_layout())
     app_gui.create_window(title="World Map", icon=None, window_size=AppSettings.window_size)
     app_gui.set_active_window(app_gui)
+    window = app_gui.get_window()
+    # TODO Need to memorize somewhere return value of the draw image to have object ID. Used to modify or delete by ID
+    window['main_canvas'].draw_image(filename=AppSettings.main_map, location=(0, AppSettings.window_height))
+
     #TODO Cleanup main from unnecessary logic
-    event_binder.bind_event(["<Button-1>", 'Window L-Click'], app_gui.get_window())
+    #event_binder.bind_event(["<Button-1>", 'Window L-Click'], app_gui.get_window())
     app_gui.main_loop()
 

@@ -4,7 +4,7 @@ from app_settings import AppSettings
 
 
 class MainWindow(BaseWindow, WindowManager):
-    __main_window_layout = AppSettings.layout
+    __main_window_layout = AppSettings.layout_main
     __map_image = None
     __version = AppSettings.app_version
 
@@ -43,3 +43,7 @@ class MainWindow(BaseWindow, WindowManager):
             self.read_window(300)
             print(self.event, self.values, self.check_is_active())
             self.common_events_loop()
+            if self.event == 'main_canvas':
+                window = self.get_window()
+                # TODO Need to memorize somewhere return value of the draw image to have object ID. Used to modify or delete by ID
+                window['main_canvas'].draw_image(filename=AppSettings.pin_icon, location=self.values['main_canvas'])
