@@ -11,9 +11,7 @@ if __name__ == "__main__":
     app_gui.set_active_window(app_gui)
     window = app_gui.get_window()
     # TODO Need to memorize somewhere return value of the draw image to have object ID. Used to modify or delete by ID
-    window['main_canvas'].draw_image(filename=AppSettings.main_map, location=(0, AppSettings.window_height))
-
+    main_map = window['main_canvas'].draw_image(filename=AppSettings.main_map, location=(0, AppSettings.window_width))
     #TODO Cleanup main from unnecessary logic
-    #event_binder.bind_event(["<Button-1>", 'Window L-Click'], app_gui.get_window())
     app_gui.main_loop()
 

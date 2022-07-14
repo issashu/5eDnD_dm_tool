@@ -46,4 +46,5 @@ class MainWindow(BaseWindow, WindowManager):
             if self.event == 'main_canvas':
                 window = self.get_window()
                 # TODO Need to memorize somewhere return value of the draw image to have object ID. Used to modify or delete by ID
-                window['main_canvas'].draw_image(filename=AppSettings.pin_icon, location=self.values['main_canvas'])
+                # window['main_canvas'].draw_image(filename=AppSettings.pin_icon, location=self.values['main_canvas'])
+                window['main_canvas'].draw_point(point=self.values['main_canvas'], size=5, color='black')

@@ -35,10 +35,10 @@ class WindowManager(object):
         #TODO Clean up the list of common events. This is placeholder for now
         if self.__current_window.event == 'Version':
             simple_gui.popup_ok(self.__current_window.get_app_version(), title="Version info")
-            return
+            return None
 
         if self.__current_window.event == simple_gui.WIN_CLOSED or self.__current_window.event == 'Exit':
             self.__current_window.close_window()
-            return
+            return None
 
 
