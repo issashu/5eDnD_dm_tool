@@ -2,7 +2,6 @@ import PySimpleGUI as Sg
 from PIL import Image
 
 
-
 # noinspection PyMissingOrEmptyDocstring
 class AppSettings:
     app_version = '0.1a'
@@ -19,11 +18,11 @@ class AppSettings:
     pin_icon = "/Users/issashu/Library/Mobile Documents/com~apple~CloudDocs/Coding/5eDnD_app/5eDnD_dm_tool/" \
                "app_assets/Images/Pin.png"
 
+    # TODO Add error handling and separate map loading logic into own object
     map = Image.open(main_map)
     canvas_width, canvas_height = map.size
 
     col = [[Sg.Graph(canvas_size=map.size, graph_bottom_left=(0, 0), graph_top_right=window_size,
-                             enable_events=True, drag_submits=False, expand_x=True, expand_y=True, key='main_canvas')]]
+                     enable_events=True, drag_submits=False, expand_x=True, expand_y=True, key='main_canvas')]]
 
     layout_main = [[Sg.Column(col, scrollable=True, expand_x=True, expand_y=True, key='main_column')]]
-
