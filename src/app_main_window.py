@@ -1,21 +1,14 @@
 from BaseWindowClass import BaseWindow
-from WindowManagerClass import WindowManager
 from app_settings import AppSettings
+import PySimpleGUI as simple_gui
 
 
-class MainWindow(BaseWindow, WindowManager):
-    __main_window_layout = AppSettings.layout_main
-    __map_image = None
-    __version = AppSettings.app_version
-
-    def get_window_layout(self) -> list:
-        """
-        Method used to retrieve the window layout list.
-
-        Returns: The window layout as a list
-
-        """
-        return self.__main_window_layout
+class MainWindow(BaseWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        self.set_layout(AppSettings.main_window_layout)
+        self.__map_image = AppSettings.main_map
+        self.__version = AppSettings.app_version
 
     def set_map(self, map_file):
         """
@@ -38,13 +31,30 @@ class MainWindow(BaseWindow, WindowManager):
     def get_app_version(self):
         return self.__version
 
-    def main_loop(self):
+    def process_window_events(self):
+
+        if self.event == simple_gui.WIN_CLOSED or self.event == 'Exit':
+            self.close_window()
+            return None
+
+        if self.event == 'Version':
+            simple_gui.popup_ok(self.get_app_version(), title="Version info")
+            return None
+
+    def window_loop(self):
+        active_window = self.get_window()
+
+        active_window['main_canvas'].draw_image(filename=AppSettings.main_map, location=(0, AppSettings.window_width))
+
         while self.check_is_active():
             self.read_window(300)
             print(self.event, self.values, self.check_is_active())
-            self.common_events_loop()
+
+            self.process_window_events()
+
             if self.event == 'main_canvas':
                 window = self.get_window()
                 # TODO Need to memorize somewhere return value of the draw image to have object ID. Used to modify or delete by ID
                 # window['main_canvas'].draw_image(filename=AppSettings.pin_icon, location=self.values['main_canvas'])
                 window['main_canvas'].draw_point(point=self.values['main_canvas'], size=3, color='white')
+

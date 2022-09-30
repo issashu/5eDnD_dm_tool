@@ -4,6 +4,7 @@ from PIL import Image
 
 # noinspection PyMissingOrEmptyDocstring
 class AppSettings:
+    app_name = 'Roleplay Map DB'
     app_version = '0.1a'
     settings_file_path = '.'
     settings_file_name = 'SETTINGS.INI'
@@ -25,4 +26,4 @@ class AppSettings:
     col = [[Sg.Graph(canvas_size=map.size, graph_bottom_left=(0, 0), graph_top_right=window_size,
                      enable_events=True, drag_submits=False, expand_x=True, expand_y=True, key='main_canvas')]]
 
-    layout_main = [[Sg.Column(col, scrollable=True, expand_x=True, expand_y=True, key='main_column')]]
+    main_window_layout = [[Sg.Column(col, scrollable=True, expand_x=True, expand_y=True, key='main_column')]]

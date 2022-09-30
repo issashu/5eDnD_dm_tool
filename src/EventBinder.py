@@ -3,7 +3,7 @@ import PySimpleGUI as simple_gui
 
 class EventBinder(object):
     """
-    One Binder to rule them all and events to bind/unbind them
+    One Binder to rule them all and to events  bind/unbind them
     """
     __instance = None
 

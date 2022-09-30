@@ -9,8 +9,7 @@ class BaseWindow(object):
 
     def __init__(self):
         """
-        Single style instantiation method. If there is no instance of the class, creates a new one.
-        Otherwise, just returns the existing one. Creates a barebone window. Use specific methods to add elements.
+
         """
         self.event = None
         self.values = None
@@ -30,6 +29,15 @@ class BaseWindow(object):
         :param layout: Provide a predefined layout to use as the window one.
         """
         self.__window_layout = layout
+
+    def get_window_layout(self) -> list:
+        """
+        Method used to retrieve the window layout list.
+
+        Returns: The window layout as a list
+
+        """
+        return self.__window_layout
 
     def create_window(self, title, icon, window_size,
                       right_click_menu=simple_gui.MENU_RIGHT_CLICK_EDITME_VER_SETTINGS_EXIT) -> simple_gui.Window:
@@ -67,3 +75,8 @@ class BaseWindow(object):
         self.__is_active = False
         self.__window.close()
 
+    def process_window_events(self):
+        pass
+
+    def window_loop(self):
+        pass
